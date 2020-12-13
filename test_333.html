@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>new Object()로 사용자 객체 만들기</title>
+	<script>
+		function inquiry() { return this.balance; }
+		function deposit(money) { this.balance +=money; }
+		function withdraw(money) {
+			this.balance -= money;
+			return money;
+		}
+
+		var account = new Object();
+		account.owner = "계좌번호";
+		account.code = "94160200-000000";
+		account.balance = 35000;
+		account.inquiry = inquiry;
+		account.deposit = deposit;
+		account.withdraw = withdraw;
+	</script>
+</head>
+<body>
+	<h3>사용자(서승원) 국민은행 잔액조회</h3>
+	<hr>
+	<script>
+		document.write("잔액 : ");
+		document.write(account.owner + ",");
+		document.write(account.code +",");
+		document.write(account.balance + "<br>");
+
+		account.deposit(1000000);
+		document.write("1000000원 입금 " + account.inquiry() +"<br>");
+		account.withdraw(80000);
+		document.write("80000원 인출 " + account.inquiry()+"<br>");
+	</script>
+</body>
+	</html>
